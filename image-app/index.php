@@ -1,6 +1,8 @@
 <?php 
 //load the DB connection and configuration
-require( 'CONFIG.php' ); ?>
+require( 'CONFIG.php' );
+require_once( 'includes/functions.php' );
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +20,7 @@ require( 'CONFIG.php' ); ?>
 			
 			<?php 
 			//get the most recent 20 published posts
-			$sql = "SELECT image, title, body, date
+			$sql = "SELECT image, title, body, date, post_id
 					FROM posts
 					WHERE is_published = 1
 					ORDER BY date DESC
@@ -38,6 +40,7 @@ require( 'CONFIG.php' ); ?>
 				<h2><?php echo $post['title']; ?></h2>
 				<p><?php echo $post['body']; ?></p>
 				<span class="date"><?php echo $post['date']; ?></span>
+				<span class="comment-count"><?php count_comments( $post['post_id'] ); ?></span>
 			</div><!-- 	end .post	 -->
 			<?php 
 				} //end while
@@ -95,7 +98,7 @@ require( 'CONFIG.php' ); ?>
 					<?php 
 					//loop it
 					while( $cat = $result->fetch_assoc() ){ ?>
-					<li><?php echo $cat['name']; ?> (20)</li>
+					<li><?php echo $cat['name']; ?> (<?php 	count_posts_in_cat( $cat['category_id'] ); ?>)</li>
 					<?php } //end while
 					//free it
 					$result->free(); ?>
