@@ -41,4 +41,74 @@ function count_comments( $post_id ){
 	} //end if
 }
 
+
+//Functions to sanitize data safely for the database
+function clean_string( $dirty ){
+	global $db;
+	$clean = mysqli_real_escape_string( $db, filter_var( $dirty, FILTER_SANITIZE_STRING ) );
+	return $clean;
+}
+
+
+
+//Display feedback from a typical form 
+function show_feedback( $heading, $class, $bullets ){
+	if( isset($heading) ){
+	?>
+	<div class="feedback <?php echo $class; ?>">
+		<h3><?php echo $heading; ?></h3>
+		
+		<?php if( !empty($bullets) ){ ?>
+		<ul>
+			<?php foreach( $bullets as $bullet ){
+				echo "<li>$bullet</li>";
+			} ?>
+		</ul>
+		<?php } //end if bullets not empty ?>
+
+	</div>
+	<?php
+	}//end if heading exists
+}
+
+
+//better looking timestamps
+function nice_date( $timestamp ){
+	$date = new DateTime( $timestamp );
+	//desired format: Wednesday, November 4
+	echo $date->format('l, F j');
+}
+
+//Time ago function
+//https://stackoverflow.com/questions/1416697/converting-timestamp-to-time-ago-in-php-e-g-1-day-ago-2-days-ago/18602474#18602474
+function time_elapsed_string($datetime, $full = false) {
+    $now = new DateTime;
+    $ago = new DateTime($datetime);
+    $diff = $now->diff($ago);
+
+    $diff->w = floor($diff->d / 7);
+    $diff->d -= $diff->w * 7;
+
+    $string = array(
+        'y' => 'year',
+        'm' => 'month',
+        'w' => 'week',
+        'd' => 'day',
+        'h' => 'hour',
+        'i' => 'minute',
+        's' => 'second',
+    );
+    foreach ($string as $k => &$v) {
+        if ($diff->$k) {
+            $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+        } else {
+            unset($string[$k]);
+        }
+    }
+
+    if (!$full) $string = array_slice($string, 0, 1);
+    return $string ? implode(', ', $string) . ' ago' : 'just now';
+}
+
+
 //no close php
