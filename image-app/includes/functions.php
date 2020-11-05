@@ -110,5 +110,21 @@ function time_elapsed_string($datetime, $full = false) {
     return $string ? implode(', ', $string) . ' ago' : 'just now';
 }
 
+//display the name of any category based on its ID
+function show_category_name( $id ){
+	global $db;
+	$sql = "SELECT name 
+			FROM categories
+			WHERE category_id = $id
+			LIMIT 1";
+	$result = $db->query( $sql );
+	if( $result->num_rows >= 1 ){
+		while( $category = $result->fetch_assoc() ){
+			echo $category['name'];
+		}	
+		$result->free();
+	}
+}
+
 
 //no close php

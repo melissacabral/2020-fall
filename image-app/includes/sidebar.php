@@ -1,7 +1,7 @@
 <aside class="sidebar">
 		<?php 
 		//get up to 5 recently joined users
-		$sql = "SELECT username, profile_pic
+		$sql = "SELECT username, profile_pic, user_id
 				FROM users
 				ORDER BY join_date DESC
 				LIMIT 5";
@@ -15,8 +15,10 @@
 			<ul>
 				<?php while( $user = $result->fetch_assoc() ){ ?>
 				<li class="user">
-					<img src="<?php echo $user['profile_pic'] ?>" width="50" height="50">
-					<?php echo $user['username']; ?>
+					<a href="profile.php?user_id=<?php echo $user['user_id']; ?>">
+						<img src="<?php echo $user['profile_pic'] ?>" width="50" height="50">
+						<?php echo $user['username']; ?>
+					</a>
 				</li>
 				<?php } //end while
 				//free it
@@ -43,7 +45,12 @@
 				<?php 
 				//loop it
 				while( $cat = $result->fetch_assoc() ){ ?>
-				<li><?php echo $cat['name']; ?> (<?php 	count_posts_in_cat( $cat['category_id'] ); ?>)</li>
+				<li>
+					<a href="category.php?cat_id=<?php echo $cat['category_id']; ?>">
+						<?php echo $cat['name']; ?>
+					</a>
+					(<?php count_posts_in_cat( $cat['category_id'] ); ?>)
+				</li>
 				<?php } //end while
 				//free it
 				$result->free(); ?>
