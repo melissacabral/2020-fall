@@ -15,4 +15,13 @@ require_once( 'includes/functions.php' );
 	<div class="site">
 		<header class="header">
 			<h1><a href="index.php">Image App</a></h1>
+
+			<nav class="main-navigation">
+				<form method="get" action="search.php" class="searchform">
+					<label class="screen-reader-text">Search:</label>
+					<input type="search" name="phrase" required>
+					<input type="hidden" name="page" value="1">
+					<input type="submit" value="Search">
+				</form>
+			</nav>
 		</header>
