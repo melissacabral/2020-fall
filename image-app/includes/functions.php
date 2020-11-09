@@ -48,6 +48,23 @@ function clean_string( $dirty ){
 	$clean = mysqli_real_escape_string( $db, filter_var( $dirty, FILTER_SANITIZE_STRING ) );
 	return $clean;
 }
+function clean_email( $dirty ){
+	global $db;
+	$clean = mysqli_real_escape_string( $db, filter_var( $dirty, FILTER_SANITIZE_EMAIL ) );
+	return $clean;
+}
+function clean_int( $dirty ){
+	global $db;
+	$clean = mysqli_real_escape_string( $db, filter_var( $dirty, FILTER_SANITIZE_NUMBER_INT ) );
+	return $clean;
+}
+function clean_boolean( $dirty ){
+	if($dirty){
+		return 1;
+	}else{
+		return 0;
+	}
+}
 
 
 
