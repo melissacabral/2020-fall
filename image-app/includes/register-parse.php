@@ -59,11 +59,13 @@ if( isset( $_POST['did_register'] ) ){
 	
 	//if valid, add the new user and tell them to login
 	if( $valid ){
-		//TODO: hash the password
+		// hash and salt the password
+		$salt = bin2hex(random_bytes( 10 ));
+		$hashed_password = sha1($password . $salt);
 		$sql = "INSERT INTO users
-				( username, password, email, is_admin, join_date )
+				( username, password, email, is_admin, join_date, salt )
 				VALUES
-				( '$username', '$password', '$email', 0, now() )";
+				( '$username', '$hashed_password', '$email', 0, now(), '$salt' )";
 		$result = $db->query($sql);
 		//check it (twice)
 		if( ! $result ){
