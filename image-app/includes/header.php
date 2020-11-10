@@ -1,7 +1,11 @@
 <?php 
+session_start();
 //load the DB connection and configuration
 require( 'CONFIG.php' );
 require_once( 'includes/functions.php' );
+
+//is the person viewing the page logged in?
+$logged_in_user = check_login();
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,5 +28,20 @@ require_once( 'includes/functions.php' );
 					<input type="hidden" name="page" value="1">
 					<input type="submit" value="Search">
 				</form>
+
+				<ul class="menu">
+					<?php if( $logged_in_user ){ 
+						//logged in navigation ?>
+					<li><a href="#">New Post</a></li>
+					<li><a href="#"><?php echo $logged_in_user['username']; ?>'s Profile</a></li>
+					<li><a href="login.php?action=logout">Log Out</a></li>
+					
+					<?php }else{ 
+						//not logged in navigation ?>
+
+					<li><a href="register.php">Sign Up</a></li>
+					<li><a href="login.php">Log In</a></li>
+					<?php } ?>
+				</ul>
 			</nav>
 		</header>

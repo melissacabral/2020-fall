@@ -13,8 +13,7 @@ if( isset($_POST['did_comment']) ){
 	}
 	//if valid, add the comment to the database
 	if( $valid ){
-		//TODO:  use the logged in user_id
-		$user_id = 1;
+		$user_id = $logged_in_user['user_id'];
 		$sql = "INSERT INTO comments
 				( user_id, body, date, post_id, is_approved )
 				VALUES
@@ -74,6 +73,7 @@ if( isset($_POST['did_comment']) ){
 	} //end if comments found ?>
 </section>
 
+<?php if( $logged_in_user ){ ?>
 <section class="comment-form" id="respond">
 	<h2>Leave a comment:</h2>
 
@@ -87,3 +87,8 @@ if( isset($_POST['did_comment']) ){
 		<input type="hidden" name="did_comment" value="1">
 	</form>
 </section>
+<?php 
+}else{
+	echo 'Please log in to leave a comment';
+}//end if logged in
+?>
