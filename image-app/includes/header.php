@@ -32,7 +32,7 @@ $logged_in_user = check_login();
 				<ul class="menu">
 					<?php if( $logged_in_user ){ 
 						//logged in navigation ?>
-					<li><a href="#">New Post</a></li>
+					<li><a href="new-post.php">New Post</a></li>
 					<li><a href="#"><?php echo $logged_in_user['username']; ?>'s Profile</a></li>
 					<li><a href="login.php?action=logout">Log Out</a></li>
 					
