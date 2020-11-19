@@ -39,7 +39,7 @@ $user_id = $_GET['user_id'];
 				</span>
 
 				<a href="single.php?post_id=<?php echo $post['post_id']; ?>">
-					<img src="<?php echo $post['image']; ?>" alt="">
+					<?php show_post_image( $post['post_id'], 'large' ); ?>
 				</a>				
 
 				<h2><?php echo $post['title']; ?></h2>
@@ -53,7 +53,7 @@ $user_id = $_GET['user_id'];
 						?>
 			<div class="post little-post">
 				<a href="single.php?post_id=<?php echo $post['post_id']; ?>">
-					<img src="<?php echo $post['image']; ?>" alt="" width="100" height="100">
+					<?php show_post_image( $post['post_id'], 'small' ); ?>
 				</a>
 			</div>
 

@@ -32,7 +32,7 @@ $cat_id = $_GET['cat_id'];
 			?>
 			<div class="post">
 				<a href="single.php?post_id=<?php echo $post['post_id']; ?>">
-					<img src="<?php echo $post['image']; ?>" alt="">
+					<?php show_post_image( $post['post_id'] ); ?>
 				</a>
 
 				<span class="author">

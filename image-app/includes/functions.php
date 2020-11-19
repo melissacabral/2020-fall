@@ -183,4 +183,40 @@ function check_login(){
 }
 
 
+//display any image size (small, medium, large) from any post
+function show_post_image( $post_id, $size = 'medium' ){
+	global $db;
+	$sql = "SELECT image, title
+			FROM posts
+			WHERE post_id = $post_id
+			LIMIT 1";
+	$result = $db->query($sql);
+	if( ! $result ){
+		echo $db->error;
+	}
+	if( $result->num_rows >= 1 ){
+		//display the image
+		while( $post = $result->fetch_assoc() ){
+			$url = 'uploads/' . $post['image'] . "_$size.jpg";
+			$alt = $post['title'];
+			echo "<img src='$url' alt='$alt'>";
+		}
+		$result->free();
+	}
+}
+
+//form input helpers
+function selected( $a, $b ){
+	if($a == $b){
+		echo 'selected';
+	}
+}
+
+function checked( $a, $b ){
+	if($a == $b){
+		echo 'checked';
+	}
+}
+
+
 //no close php

@@ -52,7 +52,9 @@ if( $phrase != '' ){
 		<?php while( $post = $result->fetch_assoc() ){ ?>
 		<div class="item">
 			<a href="single.php?post_id=<?php echo $post['post_id']; ?>">
-				<img src="<?php echo $post['image']; ?>" width="150" height="150">
+
+				<?php show_post_image( $post['post_id'], 'small' ); ?>
+				
 				<h3><?php echo $post['title']; ?></h3>
 				<span class="date"><?php nice_date($post['date']); ?></span>
 			</a>

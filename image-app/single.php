@@ -27,7 +27,7 @@ $post_id = $_GET['post_id'];
 			?>
 			<div class="post">
 				
-				<img src="<?php echo $post['image']; ?>" alt="">
+				<?php show_post_image( $post['post_id'], 'large' ); ?>
 				
 
 					<span class="author">
