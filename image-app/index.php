@@ -46,6 +46,10 @@ require('includes/header.php'); ?>
 				<p><?php echo $post['body']; ?></p>
 				<span class="date"><?php nice_date( $post['date'] ); ?></span>
 				<span class="comment-count"><?php count_comments( $post['post_id'] ); ?></span>
+				
+				<div class="likes">				  
+					  <?php like_interface( $post['post_id'], $logged_in_user['user_id'] ); ?>					  
+				</div><!-- end likes -->
 			</div><!-- 	end .post	 -->
 			<?php 
 				} //end while

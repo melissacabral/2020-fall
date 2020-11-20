@@ -41,6 +41,23 @@ function count_comments( $post_id ){
 	} //end if
 }
 
+//Count all the likes on a particular post
+function count_likes( $post_id ){
+	global $db;
+	$sql = "SELECT COUNT(*) AS total_likes
+			FROM likes
+			WHERE post_id = $post_id";
+	$result = $db->query($sql);
+	if(!$result){
+		echo $db->error;
+	}
+	if($result->num_rows >= 1){
+		$row = $result->fetch_assoc();
+		$total = $row['total_likes'];
+		return $total == 1 ? '1 Like' : "$total Likes" ;
+	}
+}
+
 
 //Functions to sanitize data safely for the database
 function clean_string( $dirty ){
@@ -217,6 +234,29 @@ function checked( $a, $b ){
 		echo 'checked';
 	}
 }
+
+function like_interface( $post_id, $user_id ){
+	global $db;
+	//if this user likes this post, change the class
+	$sql = "SELECT * FROM likes
+			WHERE user_id = $user_id
+			AND post_id = $post_id";
+	$result = $db->query($sql);
+	if($result->num_rows >= 1){
+		$class='you-like';
+	}else{
+		$class='not-liked';
+	}
+
+	?>
+	<span class="like-interface">
+		<span class="<?php echo $class; ?>">      
+			<span class="heart-button" data-postid="<?php echo $post_id; ?>">❤</span>
+			<?php echo count_likes($post_id); ?>
+		</span>
+	</span>
+	<?php
+} /*end like interface*/
 
 
 //no close php
