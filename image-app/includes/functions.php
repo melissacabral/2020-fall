@@ -115,7 +115,7 @@ function nice_date( $timestamp ){
 
 //Time ago function
 //https://stackoverflow.com/questions/1416697/converting-timestamp-to-time-ago-in-php-e-g-1-day-ago-2-days-ago/18602474#18602474
-function time_elapsed_string($datetime, $full = false) {
+function time_ago($datetime, $full = false) {
     $now = new DateTime;
     $ago = new DateTime($datetime);
     $diff = $now->diff($ago);
@@ -141,7 +141,7 @@ function time_elapsed_string($datetime, $full = false) {
     }
 
     if (!$full) $string = array_slice($string, 0, 1);
-    return $string ? implode(', ', $string) . ' ago' : 'just now';
+    echo $string ? implode(', ', $string) . ' ago' : 'just now';
 }
 
 //display the name of any category based on its ID
@@ -222,6 +222,31 @@ function show_post_image( $post_id, $size = 'medium' ){
 	}
 }
 
+//display any profile pic at any size (pixels square), show a default if not set
+function show_profile_pic( $user_id, $size = 50 ){
+	global $db;
+	$sql = "SELECT *
+			FROM users
+			WHERE user_id = $user_id
+			LIMIT 1";
+	$result = $db->query($sql);
+	if( ! $result ){
+		echo $db->error;
+	}
+	if( $result->num_rows >= 1 ){
+		//display the image
+		while( $user = $result->fetch_assoc() ){
+			if($user['profile_pic']!= ''){ 
+				$url = $user['profile_pic'];
+			}else{ 
+				$url='images/user-placeholder.svg';
+			} 
+			echo "<img src='$url' width='$size' height='$size' >";
+		}
+		$result->free();
+	}
+}
+
 //form input helpers
 function selected( $a, $b ){
 	if($a == $b){
@@ -237,6 +262,7 @@ function checked( $a, $b ){
 
 function like_interface( $post_id, $user_id ){
 	global $db;
+	global $logged_in_user;
 	//if this user likes this post, change the class
 	$sql = "SELECT * FROM likes
 			WHERE user_id = $user_id
@@ -251,7 +277,9 @@ function like_interface( $post_id, $user_id ){
 	?>
 	<span class="like-interface">
 		<span class="<?php echo $class; ?>">      
-			<span class="heart-button" data-postid="<?php echo $post_id; ?>">❤</span>
+			<?php if($logged_in_user){ ?>
+				<span class="heart-button" data-postid="<?php echo $post_id; ?>">❤</span>
+			<?php } ?>
 			<?php echo count_likes($post_id); ?>
 		</span>
 	</span>

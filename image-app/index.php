@@ -27,23 +27,24 @@ require('includes/header.php'); ?>
 				</a>
 
 				<?php if( $post['user_id'] == $logged_in_user['user_id']){ ?>
-				<a href="edit-post.php?post_id=<?php echo $post['post_id']; ?>">Edit</a>
+				<a href="edit-post.php?post_id=<?php echo $post['post_id']; ?>" class="button button-outline button-small float-right">Edit</a>
 				<?php } ?>
 
 				<span class="author">
 					<a href="profile.php?user_id=<?php echo $post['user_id']; ?>">
-						<img src="<?php echo $post['profile_pic']; ?>" width="50" height="50">
+						<?php show_profile_pic($post['user_id'], 50); ?>
 						<?php echo $post['username']; ?>
 					</a>
 				</span>
 
 				<h2><?php echo $post['title']; ?></h2>
+				
+				<p><?php echo $post['body']; ?></p>
 				<span class="category">
 					<a href="category.php?cat_id=<?php echo $post['category_id']; ?>">
 					<?php echo $post['name']; ?>
 					</a>	
 				</span>	
-				<p><?php echo $post['body']; ?></p>
 				<span class="date"><?php nice_date( $post['date'] ); ?></span>
 				<span class="comment-count"><?php count_comments( $post['post_id'] ); ?></span>
 				

@@ -28,6 +28,10 @@ $post_id = $_GET['post_id'];
 			<div class="post">
 				
 				<?php show_post_image( $post['post_id'], 'large' ); ?>
+
+				<?php if( $post['user_id'] == $logged_in_user['user_id']){ ?>
+				<a href="edit-post.php?post_id=<?php echo $post['post_id']; ?>" class="button button-outline button-small float-right">Edit</a>
+				<?php } ?>
 				
 
 					<span class="author">

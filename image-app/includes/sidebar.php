@@ -16,7 +16,7 @@
 				<?php while( $user = $result->fetch_assoc() ){ ?>
 				<li class="user">
 					<a href="profile.php?user_id=<?php echo $user['user_id']; ?>">
-						<img src="<?php echo $user['profile_pic'] ?>" width="50" height="50">
+						<?php show_profile_pic($user['user_id'], 40); ?>
 						<?php echo $user['username']; ?>
 					</a>
 				</li>

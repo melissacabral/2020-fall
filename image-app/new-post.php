@@ -15,14 +15,12 @@ require('includes/new-post-parse.php');
 			<form method="post" action="new-post.php" enctype="multipart/form-data">
 				<label>Image File:  (jpg, gif, png allowed)</label>
 				<input type="file" name="uploadedfile" accept="image/*" required>
-
-				<input type="submit" value="Next: Post Details &rarr;">
+				<br>
+				<input type="submit" value="Next: Post Details &rarr;" class="float-right">
 				<input type="hidden" name="did_upload" value="1">
 			</form>
 		</div>
 
-		<h2>Delete when finished testing the $_FILES array:</h2>
-		<pre><?php print_r($_FILES); ?></pre>
 		
 		<?php }else{
 			echo '<h1>You must be logged in to create a post.</h1>';

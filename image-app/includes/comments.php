@@ -65,7 +65,7 @@ if( isset($_POST['did_comment']) ){
 
 		<p><?php echo $comment['body']; ?></p>
 
-		<span class="date"><?php echo time_elapsed_string( $comment['date'] ); ?></span>
+		<span class="date"><?php echo time_ago( $comment['date'] ); ?></span>
 	</div>
 	<?php 
 		} //end while

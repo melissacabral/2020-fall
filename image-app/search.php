@@ -56,7 +56,7 @@ if( $phrase != '' ){
 				<?php show_post_image( $post['post_id'], 'small' ); ?>
 				
 				<h3><?php echo $post['title']; ?></h3>
-				<span class="date"><?php nice_date($post['date']); ?></span>
+				<span class="ago"><?php time_ago($post['date']); ?></span>
 			</a>
 		</div>
 		<?php } //end while
