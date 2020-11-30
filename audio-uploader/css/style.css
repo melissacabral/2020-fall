@@ -1,0 +1,32 @@
+@import url(https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css);
+
+
+/* == form feedback system */
+
+.feedback{
+	background-color: beige;
+	padding:1em;
+	margin:1em 0;
+	max-width: 700px;
+}
+.error{
+	background-color: pink;
+}
+.success{
+	background-color: lightgreen;
+}
+
+/*  == basic styles just for this demo */
+.container{
+	max-width:1000px;
+	margin:1em auto;
+}
+.narrow-container{
+	max-width:600px;
+	margin:1em auto;
+}
+form{	
+	border:solid 1px #bbb;
+	margin:1em 0;
+	padding:1em;
+}

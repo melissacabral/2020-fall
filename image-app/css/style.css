@@ -1,14 +1,20 @@
 /*
 Table of Contents:
-== Variables  
+== Variables 
 == Basic layout, mobile-first
 == Header 
+== Navigation bar and main menu
 == Main Content Area
+== form feedback system 
 == Sidebar 
 == Footer
-== CSS Grid Layout Breakpoints
+== Milligram recolor 
+== CSS Grid Layout 
+== Responsive nav bar 
 */
-/* == Variables (custom properties). these don't work in IE */
+/* 
+== Variables (custom properties). these don't work in IE 
+*/
 :root{
 	--base-color: 	dimgray;
 	--light-text:	white;
@@ -19,7 +25,9 @@ Table of Contents:
 	--light-color: 	#eee;
 	--shadow:2px 3px 6px rgba(0,0,0,.2);
 }
-/* == Basic layout, mobile-first*/
+/* 
+== Basic layout, mobile-first
+*/
 html{
 	font-size: 80%;
 }
@@ -56,7 +64,9 @@ h3{
 	width: 1px;
 	word-wrap: normal !important;
 }
-/* == Header */
+/* 
+== Header 
+*/
 .header {
 	background: var(--base-color);
 	color:var(--light-text);
@@ -69,7 +79,9 @@ h3{
 .header h1 a{
 	color:inherit;
 }
-/* == Navigation bar and main menu */
+/* 
+== Navigation bar and main menu 
+*/
 .main-navigation{
 	background-color: gray;
 }
@@ -108,7 +120,9 @@ h3{
 	background-color: rgba(255,255,255,.8);
 	color:black;
 }
-/* == Main Content Area*/
+/* 
+== Main Content Area
+*/
 .content{
 	padding: 1em;
 }
@@ -170,7 +184,6 @@ h3{
 	opacity:.4;
 }
 /*comment icon*/
-
 .content .comment-count:before{
 	content:'';
 	background-image:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDI0IDI0IiBoZWlnaHQ9IjI0cHgiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0cHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTEwLjcxOCwxOC41NjFsNi43OCw1LjMxMUMxNy42MDksMjMuOTU3LDE3LjY3NywyNCwxNy43NDMsMjQgIGMwLjE4OCwwLDAuMjQ0LTAuMTI3LDAuMjQ0LTAuMzM4di01LjAyM2MwLTAuMzU1LDAuMjMzLTAuNjM3LDAuNTQ4LTAuNjM3TDIxLDE4YzIuMjE5LDAsMy0xLjA5NCwzLTJzMC0xMywwLTE0cy0wLjc0OC0yLTMuMDE0LTIgIEgyLjk4OUMwLjgwMiwwLDAsMC45NjksMCwyczAsMTMuMDMxLDAsMTRzMC44MjgsMiwzLDJoNkM5LDE4LDEwLjI1NSwxOC4wMzUsMTAuNzE4LDE4LjU2MXoiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==); 
@@ -196,7 +209,6 @@ h3{
 	background-position: center center;
 	opacity:.4;
 }
-
 /* flexbox grid for thumbnails */
 .grid{
 	display: flex;
@@ -216,7 +228,9 @@ h3{
 
 
 
-/*== form feedback system */
+/*
+== form feedback system 
+*/
 .feedback{
 	background-color: beige;
 	padding:1em;
@@ -241,7 +255,9 @@ h3{
 	margin:1em;
 	border-bottom:solid 1px #bbb;
 }
-/* == Sidebar */
+/* 
+== Sidebar 
+*/
 .sidebar{
 	padding:1em;
 	font-size:90%;
@@ -255,7 +271,9 @@ h3{
 	max-width:20em;
 	margin: 1em 0 3em;
 }
-/* == Footer*/
+/* 
+== Footer
+*/
 .header {
 	background: dimgray;
 	color:white;
@@ -265,7 +283,9 @@ h3{
 	padding:1em;
 	color:white;
 }
-/* ==Milligram recolor */
+/* 
+== Milligram recolor 
+*/
 a{
 	color:var(--link-color);
 }
@@ -306,8 +326,10 @@ input[type='file']{
     font-size:.9em;
     font-family: inherit;
 }
-/* == CSS Grid Layout Breakpoints: check for browsers that support grid */
-/* check for non ie browsers that support grid */
+/* 
+== CSS Grid Layout 
+Breakpoints: check for browsers that support grid 
+*/
 @supports (grid-area: auto) {
 	.site {
 		display: grid;
@@ -328,7 +350,9 @@ input[type='file']{
 	.footer {
 		grid-area: footer;
 	}
-	/* == responsive nav bar */
+	/* 
+	== Responsive nav bar 
+	*/
 	.main-navigation{
 		display: grid;
 		grid-template-areas: 	"search" 
@@ -389,4 +413,3 @@ input[type='file']{
 	text-shadow:none;
 	-webkit-text-stroke: 1px red;
 }
- to join this conversation on GitH
